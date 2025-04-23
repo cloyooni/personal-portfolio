@@ -1,10 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./App.css"
+import { initScrollAnimations } from "./animations"
 
 function App() {
   const [activeTab, setActiveTab] = useState("technical")
+
+  useEffect(() => {
+    initScrollAnimations()
+  }, [])
 
   return (
     <div className="portfolio">
@@ -31,9 +36,9 @@ function App() {
             </a>
           </nav>
           <div className="header-actions">
-            <button className="btn btn-outline">
+            <a href="/resume.pdf" download className="btn btn-outline">
               ↓ Resume
-            </button>
+            </a>
             <div className="social-links">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="social-link">
                 <img src="/github.png" alt="GitHub" />
@@ -47,8 +52,8 @@ function App() {
                 <img src="/linkedin.png" alt="LinkedIn" />
               </a>
               <a href="mailto:ina.chloe@gmail.com" className="social-link">
-              <img src="/email.png" alt="Email" />
-            </a>
+                <img src="/email.png" alt="Email" />
+              </a>
             </div>
           </div>
         </div>
@@ -396,151 +401,151 @@ function App() {
 
         {/* Projects Section */}
         <section id="projects" className="projects section bg-light">
-  <div className="container">
-    <div className="section-header">
-      <h2 className="section-title">Projects</h2>
-      <div className="section-divider"></div>
-      <p className="section-subtitle">A showcase of my technical projects and creative work.</p>
-    </div>
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Projects</h2>
+              <div className="section-divider"></div>
+              <p className="section-subtitle">A showcase of my technical projects and creative work.</p>
+            </div>
 
-    <div className="projects-grid">
-      <div className="project-card">
-        <div className="project-image chitchat-project" style={{
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative'
-        }}>
-          <div className="project-logo-container">
-            <span className="project-icon">💬</span>
-          </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">ChitChat (Messaging Platform)</h3>
-          <p className="project-description">
-            Constructed a real-time messaging app using a client-server architecture with React, Node.js, Express.js, and MongoDB.
-            Implemented secure user authentication using JWT for token-based access and bcrypt for password hashing.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">React</span>
-            <span className="project-tag">Node.js</span>
-            <span className="project-tag">Express.js</span>
-            <span className="project-tag">MongoDB</span>
-            <span className="project-tag">JWT</span>
-          </div>
-        </div>
-      </div>
+            <div className="projects-grid">
+              <div className="project-card">
+                <div className="project-image chitchat-project" style={{
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  position: 'relative'
+                }}>
+                  <div className="project-logo-container">
+                    <span className="project-icon">💬</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">ChitChat (Messaging Platform)</h3>
+                  <p className="project-description">
+                    Constructed a real-time messaging app using a client-server architecture with React, Node.js, Express.js, and MongoDB.
+                    Implemented secure user authentication using JWT for token-based access and bcrypt for password hashing.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">Express.js</span>
+                    <span className="project-tag">MongoDB</span>
+                    <span className="project-tag">JWT</span>
+                  </div>
+                </div>
+              </div>
 
-      <div className="project-card">
-        <div className="project-image task-tracker-project">
-          <div className="project-logo-container">
-            <span className="project-icon">✓</span>
-          </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">Task Tracker</h3>
-          <p className="project-description">
-            Produced a real-time task management app, featuring Google Authentication and cloud-synced task storage to enable dynamic task organization.
-            Implemented drag-and-drop task reordering, due date management with visual indicators, and real-time updates.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">React</span>
-            <span className="project-tag">Firebase</span>
-            <span className="project-tag">Node.js</span>
-            <span className="project-tag">Express.js</span>
-            <span className="project-tag">OpenAI API</span>
-          </div>
-        </div>
-      </div>
+              <div className="project-card">
+                <div className="project-image task-tracker-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">✓</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Task Tracker</h3>
+                  <p className="project-description">
+                    Produced a real-time task management app, featuring Google Authentication and cloud-synced task storage to enable dynamic task organization.
+                    Implemented drag-and-drop task reordering, due date management with visual indicators, and real-time updates.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Firebase</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">Express.js</span>
+                    <span className="project-tag">OpenAI API</span>
+                  </div>
+                </div>
+              </div>
 
-      <div className="project-card">
-        <div className="project-image pet-project">
-          <div className="project-logo-container">
-            <span className="project-icon">🐾</span>
-          </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">Automated Pet Feeding System</h3>
-          <p className="project-description">
-            Developed a responsive web app with a tracking screen that allows users to schedule pet feedings and monitor water levels for a pet feeder.
-            Led the creation of dynamic water bowl images, reflecting real-time sensor data to enhance user engagement and app functionality.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">React</span>
-            <span className="project-tag">Node.js</span>
-            <span className="project-tag">Express.js</span>
-            <span className="project-tag">IoT</span>
-          </div>
-        </div>
-      </div>
+              <div className="project-card">
+                <div className="project-image pet-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🐾</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Automated Pet Feeding System</h3>
+                  <p className="project-description">
+                    Developed a responsive web app with a tracking screen that allows users to schedule pet feedings and monitor water levels for a pet feeder.
+                    Led the creation of dynamic water bowl images, reflecting real-time sensor data to enhance user engagement and app functionality.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">Express.js</span>
+                    <span className="project-tag">IoT</span>
+                  </div>
+                </div>
+              </div>
 
-      <div className="project-card">
-        <div className="project-image dashboard-project">
-          <div className="project-logo-container">
-            <span className="project-icon">📊</span>
-          </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">Comprehensive Data Analytics Dashboard</h3>
-          <p className="project-description">
-            Developed a responsive dashboard that allows users to manage and visualize data across various
-            domains, including customer interaction, product management, and sales analytics. Designed a
-            user-friendly interface using React with Material-UI.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">React</span>
-            <span className="project-tag">Material-UI</span>
-            <span className="project-tag">Node.js</span>
-            <span className="project-tag">MongoDB</span>
-          </div>
-        </div>
-      </div>
+              <div className="project-card">
+                <div className="project-image dashboard-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">📊</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Comprehensive Data Analytics Dashboard</h3>
+                  <p className="project-description">
+                    Developed a responsive dashboard that allows users to manage and visualize data across various
+                    domains, including customer interaction, product management, and sales analytics. Designed a
+                    user-friendly interface using React with Material-UI.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Material-UI</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">MongoDB</span>
+                  </div>
+                </div>
+              </div>
 
-      <div className="project-card">
-        <div className="project-image website-project">
-          <div className="project-logo-container">
-            <span className="project-icon">🏛️</span>
-          </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">Theta Tau Website Revamp</h3>
-          <p className="project-description">
-            Collaborated with a team of developers and UI designers to rewrite and update the Theta Tau
-            professional engineering fraternity website. Enhanced functionality and user experience through
-            effective communication and technical skills.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">HTML</span>
-            <span className="project-tag">CSS</span>
-            <span className="project-tag">JavaScript</span>
-            <span className="project-tag">React</span>
-          </div>
-        </div>
-      </div>
+              <div className="project-card">
+                <div className="project-image website-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🏛️</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Theta Tau Website Revamp</h3>
+                  <p className="project-description">
+                    Collaborated with a team of developers and UI designers to rewrite and update the Theta Tau
+                    professional engineering fraternity website. Enhanced functionality and user experience through
+                    effective communication and technical skills.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">HTML</span>
+                    <span className="project-tag">CSS</span>
+                    <span className="project-tag">JavaScript</span>
+                    <span className="project-tag">React</span>
+                  </div>
+                </div>
+              </div>
 
-      <div className="project-card">
-        <div className="project-image game-project">
-          <div className="project-logo-container">
-            <span className="project-icon">🎮</span>
+              <div className="project-card">
+                <div className="project-image game-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🎮</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Game Development in Unity</h3>
+                  <p className="project-description">
+                    Led a team to develop a point-and-click survival horror game using Unity and C#. Integrated
+                    architectural elements, physics, and player mechanics to ensure seamless gameplay and functionality
+                    in a fast-paced environment.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">Unity</span>
+                    <span className="project-tag">C#</span>
+                    <span className="project-tag">Game Development</span>
+                    <span className="project-tag">UI Design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="project-content">
-          <h3 className="project-title">Game Development in Unity</h3>
-          <p className="project-description">
-            Led a team to develop a point-and-click survival horror game using Unity and C#. Integrated
-            architectural elements, physics, and player mechanics to ensure seamless gameplay and functionality
-            in a fast-paced environment.
-          </p>
-          <div className="project-tags">
-            <span className="project-tag">Unity</span>
-            <span className="project-tag">C#</span>
-            <span className="project-tag">Game Development</span>
-            <span className="project-tag">UI Design</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
         {/* Contact Section */}
         <section id="contact" className="contact section">
@@ -555,7 +560,7 @@ function App() {
 
             <div className="contact-cards">
               <div className="contact-card">
-              <div className="contact-icon">
+                <div className="contact-icon">
                   <img src="./email.png" alt="Email" />
                 </div>
                 <h3 className="contact-title">Email</h3>
@@ -582,7 +587,7 @@ function App() {
               </div>
 
               <div className="contact-card">
-              <div className="contact-icon">
+                <div className="contact-icon">
                   <img src="./github.png" alt="GitHub" />
                 </div>
                 <h3 className="contact-title">GitHub</h3>
@@ -594,8 +599,8 @@ function App() {
             </div>
 
             <div className="resume-download">
-              <a href="#" download className="btn btn-primary btn-lg">
-              ↓ Download Resume
+              <a href="/resume.pdf" download className="btn btn-primary btn-lg">
+                ↓ Download Resume
               </a>
             </div>
           </div>

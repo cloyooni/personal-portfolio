@@ -15,10 +15,20 @@
   --transition: all 0.3s ease;
 }
 
-/* Add keyframes for animations */
+/* Enhanced Animation Keyframes */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes float {
@@ -31,6 +41,37 @@
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideInBottom {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes gradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 100px; }
 }
 
 * {
@@ -142,9 +183,11 @@ h6 {
   z-index: 40;
   width: 100%;
   height: 3.5rem;
-  background: linear-gradient(135deg, #ff6b6b, #e11d48);
+  background: linear-gradient(135deg, #ff6b6b, #e11d48, #ff6b6b);
+  background-size: 200% 200%;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  animation: gradientBg 8s ease infinite;
 }
 
 .header-container {
@@ -173,10 +216,27 @@ h6 {
   font-size: 0.875rem;
   font-weight: 500;
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-link:hover {
   color: var(--text-muted);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .header-actions {
@@ -245,13 +305,31 @@ h6 {
   transform: translateY(0);
 }
 
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
 .btn-primary {
   background-color: var(--primary);
   color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
 }
 
 .btn-outline {
@@ -280,13 +358,14 @@ h6 {
   background: radial-gradient(circle at center, #ffe4e6, #ffff); /* light pink to light blue */
 }
 
-
 .hero-content {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   gap: 2rem;
   padding: 2rem 0;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
 }
 
 .hero-text {
@@ -303,10 +382,27 @@ h6 {
   font-weight: 700;
   line-height: 1.1;
   animation: fadeIn 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .hero-name {
   display: block;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.hero-name:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.hero-name.accent {
+  animation-delay: 0.5s;
+}
+
+.hero-name:nth-child(3) {
+  animation-delay: 0.8s;
 }
 
 .accent {
@@ -318,15 +414,17 @@ h6 {
   color: var(--text-muted);
   font-size: 1.125rem;
   max-width: 500px;
-  animation: fadeIn 1s ease-out 0.2s;
-  animation-fill-mode: both;
+  animation: fadeIn 1s ease-out 1s forwards;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1s forwards;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  animation: fadeIn 1s ease-out 0.4s;
-  animation-fill-mode: both;
+  animation: fadeIn 1s ease-out 1.3s forwards;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.2s forwards;
 }
 
 .hero-contact {
@@ -334,6 +432,9 @@ h6 {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.6s forwards;
+  animation: fadeIn 0.8s ease-out 1.4s forwards;
 }
 
 .contact-link {
@@ -363,6 +464,21 @@ h6 {
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   animation: float 6s ease-in-out infinite;
+}
+
+.profile-image::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary-light), transparent, var(--primary-light));
+  background-size: 200% 200%;
+  animation: gradientBg 3s ease infinite;
+  z-index: -1;
+  opacity: 0.5;
 }
 
 .profile-img {
@@ -412,12 +528,21 @@ h6 {
   background-color: #fff1f2;
   color: #9f1239;
   transition: all 0.3s ease;
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
 }
 
 .skill-badge:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list .skill-badge:nth-child(odd) {
+  animation-delay: calc(0.1s * var(--i, 1));
+}
+
+.skills-list .skill-badge:nth-child(even) {
+  animation-delay: calc(0.15s * var(--i, 1));
 }
 
 .about-story {
@@ -488,6 +613,25 @@ h6 {
   cursor: pointer;
   font-weight: 500;
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.tab-btn:hover::after,
+.tab-btn.active::after {
+  width: 100%;
+  left: 0;
 }
 
 .tab-btn.active {
@@ -505,12 +649,44 @@ h6 {
   gap: 1.5rem;
 }
 
+.tab-panel.active .card {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.tab-panel.active .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.tab-panel.active .card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.tab-panel.active .card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.tab-panel.active .card:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+.tab-panel.active .card:nth-child(5) {
+  animation-delay: 0.9s;
+}
+
 /* Cards */
 .card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.3s ease;
+  transform-origin: center;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card-content {
@@ -615,11 +791,12 @@ h6 {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 2;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .project-icon {
   font-size: 48px;
+  transition: transform 0.3s ease;
 }
 
 .projects-grid {
@@ -632,13 +809,16 @@ h6 {
   border: 1px solid var(--border);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  animation: fadeIn 0.5s ease-out;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .project-logo {
@@ -748,13 +928,16 @@ h6 {
   border: 1px solid var(--border);
   background: linear-gradient(to bottom right, #fff1f2, white);
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  animation: fadeIn 0.5s ease-out;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .contact-icon {
@@ -767,7 +950,7 @@ h6 {
   background-color: #fff1f2;
   color: #9f1239;
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
   overflow: hidden;
 }
 
@@ -778,8 +961,8 @@ h6 {
 }
 
 .contact-card:hover .contact-icon {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.2) rotate(10deg);
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
 }
 
 .contact-card:hover .contact-icon img {
@@ -805,6 +988,19 @@ h6 {
 .footer {
   border-top: 1px solid var(--border);
   background-color: var(--background-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: shimmer 3s infinite;
 }
 
 .footer-container {
@@ -905,4 +1101,42 @@ h6 {
     padding: 0;
     height: 6rem;
   }
+
+  .nav-link {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .nav-link:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .nav-link:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .nav-link:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  
+  .nav-link:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* Resume download button animation */
+.resume-download .btn {
+  animation: pulse 2s infinite;
+}
+
+/* Scroll animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
