@@ -1,10 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./App.css"
+import { initScrollAnimations } from "./animations"
 
 function App() {
   const [activeTab, setActiveTab] = useState("technical")
+
+  useEffect(() => {
+    initScrollAnimations()
+  }, [])
 
   return (
     <div className="portfolio">
@@ -31,13 +36,12 @@ function App() {
             </a>
           </nav>
           <div className="header-actions">
-            <button className="btn btn-outline">
-              <i className="icon-download"></i>
-              Resume
-            </button>
+            <a href="/resume.pdf" download className="btn btn-outline">
+              ↓ Resume
+            </a>
             <div className="social-links">
               <a href="https://github.com" target="_blank" rel="noreferrer" className="social-link">
-                <i className="icon-github"></i>
+                <img src="/github.png" alt="GitHub" />
               </a>
               <a
                 href="https://www.linkedin.com/in/hana-chloe-yoon"
@@ -45,7 +49,10 @@ function App() {
                 rel="noreferrer"
                 className="social-link"
               >
-                <i className="icon-linkedin"></i>
+                <img src="/linkedin.png" alt="LinkedIn" />
+              </a>
+              <a href="mailto:ina.chloe@gmail.com" className="social-link">
+                <img src="/email.png" alt="Email" />
               </a>
             </div>
           </div>
@@ -64,12 +71,11 @@ function App() {
                   <span className="hero-name">Yoon</span>
                 </h1>
                 <p className="hero-subtitle">
-                  Computer Science student at UCLA with a passion for game development, web design, and empowering women
-                  in tech.
+                  Full Stack Developer | UCLA Computer Science '26 | Passionate about building real-time apps, intuitive interfaces, and inclusive tech communities.
                 </p>
                 <div className="hero-buttons">
                   <a href="#contact" className="btn btn-primary">
-                    Contact me <i className="icon-arrow-right"></i>
+                    Contact me →
                   </a>
                   <a href="#projects" className="btn btn-outline">
                     View my work
@@ -77,8 +83,7 @@ function App() {
                 </div>
                 <div className="hero-contact">
                   <a href="mailto:ina.chloe@gmail.com" className="contact-link">
-                    <i className="icon-mail"></i>
-                    ina.chloe@gmail.com
+                    ✉️ ina.chloe@gmail.com
                   </a>
                   <a href="tel:7144016879" className="contact-link">
                     (714) 401-6879
@@ -86,7 +91,13 @@ function App() {
                 </div>
               </div>
               <div className="hero-image">
-                <div className="profile-image">{/* Placeholder for profile image */}</div>
+                <div className="profile-image">
+                  <img
+                    src="/profilepic.png"
+                    alt="Hana Chloe Yoon"
+                    className="profile-img"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -105,10 +116,10 @@ function App() {
                 <div className="card">
                   <div className="card-content">
                     <div className="education-header">
-                      <div>
+                      <div className="space-y-2">
                         <h4 className="education-title">University of California, Los Angeles (UCLA)</h4>
                         <p className="education-degree">Bachelor of Science, Computer Science</p>
-                        <p className="education-gpa">GPA: 3.06</p>
+                        <p className="education-courses">Relevant Coursework: Data Structures, Algorithms, Operating Systems, Software Engineering, Web Development</p>
                       </div>
                       <div className="education-date">
                         <p>Expected June 2026</p>
@@ -121,11 +132,11 @@ function App() {
                 <h3 className="about-subtitle skills-title">Technical Skills</h3>
                 <div className="skills-list">
                   <span className="skill-badge">C++</span>
-                  <span className="skill-badge">C#</span>
                   <span className="skill-badge">Java</span>
                   <span className="skill-badge">JavaScript</span>
+                  <span className="skill-badge">Python</span>
+                  <span className="skill-badge">C#</span>
                   <span className="skill-badge">React</span>
-                  <span className="skill-badge">Material-UI</span>
                   <span className="skill-badge">HTML</span>
                   <span className="skill-badge">CSS</span>
                   <span className="skill-badge">Node.js</span>
@@ -133,6 +144,7 @@ function App() {
                   <span className="skill-badge">MongoDB</span>
                   <span className="skill-badge">Firebase</span>
                   <span className="skill-badge">Unity</span>
+                  <span className="skill-badge">Assembly</span>
                 </div>
               </div>
               <div className="about-col">
@@ -152,32 +164,6 @@ function App() {
                     Beyond coding, I'm a dedicated volleyball player who has served as team captain for seven years.
                     This experience has taught me valuable leadership skills that I bring to every project I work on.
                   </p>
-                </div>
-                <div className="identity-icons">
-                  <div className="identity-icon">
-                    <div className="icon-circle">
-                      <i className="icon-code"></i>
-                    </div>
-                    <span className="icon-label">Developer</span>
-                  </div>
-                  <div className="identity-icon">
-                    <div className="icon-circle">
-                      <i className="icon-book"></i>
-                    </div>
-                    <span className="icon-label">Student</span>
-                  </div>
-                  <div className="identity-icon">
-                    <div className="icon-circle">
-                      <i className="icon-trophy"></i>
-                    </div>
-                    <span className="icon-label">Athlete</span>
-                  </div>
-                  <div className="identity-icon">
-                    <div className="icon-circle">
-                      <i className="icon-users"></i>
-                    </div>
-                    <span className="icon-label">Leader</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -214,25 +200,54 @@ function App() {
                     <div className="card-content">
                       <div className="experience-header">
                         <div>
-                          <h3 className="experience-title">Little Miss Coders</h3>
-                          <p className="experience-position">Founder and President</p>
+                          <h3 className="experience-title">Society of Women's Engineering (SWE)</h3>
+                          <p className="experience-position">Web Development Committee</p>
                         </div>
-                        <div className="experience-date">August 2020 - Current</div>
+                        <div className="experience-date">September 2024 - Current</div>
                       </div>
                       <div className="experience-details">
                         <ul className="experience-list">
-                          <li>
-                            Founded an organization that empowers young girls in STEM by teaching programming and
-                            problem-solving skills
-                          </li>
-                          <li>
-                            Collaborated with local elementary schools, developing interactive lesson plans and
-                            organizing monthly coding workshops for 20+ students
-                          </li>
-                          <li>
-                            Secured $850 in funding through a grant proposal to expand the program's reach, promoting
-                            diversity and inclusion in technology
-                          </li>
+                          <li>Developing a SWE membership portal that streamlines event sign in, integrating backend APIs and databases to track member information and progress, and encourage involvement with SWE events (1,400+ students)</li>
+                          <li>Create and implement the design of SWE Glassdoor website, a community-focused career preparation platform (React, HTML, CSS)</li>
+                          <li>Collaborate with backend engineers to connect API endpoints and build a mentor-mentee matching algorithm to enhance user experience</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="experience-header">
+                        <div>
+                          <h3 className="experience-title">Evening with Industry (EWI)</h3>
+                          <p className="experience-position">Web Developer</p>
+                        </div>
+                        <div className="experience-date">September 2024 - January 2025</div>
+                      </div>
+                      <div className="experience-details">
+                        <ul className="experience-list">
+                          <li>Designed and launched the 2025 Evening with Industry website, featuring event details and a registration system for UCLA's largest student-run networking event, serving 300+ participants and 40 companies (React, HTML, and CSS)</li>
+                          <li>Developed a dynamic table-sorting algorithm to efficiently match students with company representatives based on preferences</li>
+                          <li>Created parity with both desktop and mobile implementations, ensuring consistency in functionality and accessibility to expand viewer reach</li>
+                          <li>Optimized user interface by redesigning layout, color schemes, and visual elements to improve user navigation and information attainability</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="experience-header">
+                        <div>
+                          <h3 className="experience-title">Engineers for Professional Inclusion Conference (EPIC)</h3>
+                          <p className="experience-position">Web Developer Lead</p>
+                        </div>
+                        <div className="experience-date">January 2025 - Current</div>
+                      </div>
+                      <div className="experience-details">
+                        <ul className="experience-list">
+                          <li>Producing a website requested by SWE's Advocacy Committee that exhibits EPIC's purpose and event details, increasing attendee usability</li>
+                          <li>Integrate provided Figma designs into a responsive web interface for users to view and access essential information</li>
                         </ul>
                       </div>
                     </div>
@@ -297,6 +312,34 @@ function App() {
                 </div>
 
                 <div className={`tab-panel ${activeTab === "leadership" ? "active" : ""}`}>
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="experience-header">
+                        <div>
+                          <h3 className="experience-title">Little Miss Coders</h3>
+                          <p className="experience-position">Founder and President</p>
+                        </div>
+                        <div className="experience-date">August 2020 - Current</div>
+                      </div>
+                      <div className="experience-details">
+                        <ul className="experience-list">
+                          <li>
+                            Founded an organization that empowers young girls in STEM by teaching programming and
+                            problem-solving skills
+                          </li>
+                          <li>
+                            Collaborated with local elementary schools, developing interactive lesson plans and
+                            organizing monthly coding workshops for 20+ students
+                          </li>
+                          <li>
+                            Secured $850 in funding through a grant proposal to expand the program's reach, promoting
+                            diversity and inclusion in technology
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="card">
                     <div className="card-content">
                       <div className="experience-header">
@@ -367,60 +410,80 @@ function App() {
 
             <div className="projects-grid">
               <div className="project-card">
-                <div className="project-image ar-project">
-                  <div className="project-placeholder">3D</div>
-                </div>
-                <div className="project-content">
-                  <h3 className="project-title">3D Interactive Maze through AR</h3>
-                  <p className="project-description">
-                    Generated an application that detects 2D images of a maze layout into an interactive 3D model
-                    controlled by user movement. Programmed C# logic to enable user-controlled ball movement within the
-                    maze and constructed the AR 3D model using Unity.
-                  </p>
-                  <div className="project-tags">
-                    <span className="project-tag">Unity</span>
-                    <span className="project-tag">C#</span>
-                    <span className="project-tag">Augmented Reality</span>
-                  </div>
-                  <div className="project-links">
-                    <a href="#" className="btn btn-sm btn-outline">
-                      <i className="icon-github"></i> Code
-                    </a>
-                    <a href="#" className="btn btn-sm btn-primary">
-                      <i className="icon-external-link"></i> Demo
-                    </a>
+                <div className="project-image chitchat-project" style={{
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  position: 'relative'
+                }}>
+                  <div className="project-logo-container">
+                    <span className="project-icon">💬</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="project-card">
-                <div className="project-image pet-project">{/* Placeholder for project image */}</div>
                 <div className="project-content">
-                  <h3 className="project-title">Automated Pet Feeding System</h3>
+                  <h3 className="project-title">ChitChat (Messaging Platform)</h3>
                   <p className="project-description">
-                    Collaborated with a physical, electrical, and backend team to develop an autonomous pet feeding
-                    system. Developed a responsive web app that gives users the ability to feed their pets,
-                    incorporating user-friendly features with optimal efficiency.
+                    Constructed a real-time messaging app using a client-server architecture with React, Node.js, Express.js, and MongoDB.
+                    Implemented secure user authentication using JWT for token-based access and bcrypt for password hashing.
                   </p>
                   <div className="project-tags">
                     <span className="project-tag">React</span>
-                    <span className="project-tag">Material-UI</span>
                     <span className="project-tag">Node.js</span>
                     <span className="project-tag">Express.js</span>
-                  </div>
-                  <div className="project-links">
-                    <a href="#" className="btn btn-sm btn-outline">
-                      <i className="icon-github"></i> Code
-                    </a>
-                    <a href="#" className="btn btn-sm btn-primary">
-                      <i className="icon-external-link"></i> Demo
-                    </a>
+                    <span className="project-tag">MongoDB</span>
+                    <span className="project-tag">JWT</span>
                   </div>
                 </div>
               </div>
 
               <div className="project-card">
-                <div className="project-image dashboard-project">{/* Placeholder for project image */}</div>
+                <div className="project-image task-tracker-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">✓</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Task Tracker</h3>
+                  <p className="project-description">
+                    Produced a real-time task management app, featuring Google Authentication and cloud-synced task storage to enable dynamic task organization.
+                    Implemented drag-and-drop task reordering, due date management with visual indicators, and real-time updates.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Firebase</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">Express.js</span>
+                    <span className="project-tag">OpenAI API</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="project-card">
+                <div className="project-image pet-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🐾</span>
+                  </div>
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Automated Pet Feeding System</h3>
+                  <p className="project-description">
+                    Developed a responsive web app with a tracking screen that allows users to schedule pet feedings and monitor water levels for a pet feeder.
+                    Led the creation of dynamic water bowl images, reflecting real-time sensor data to enhance user engagement and app functionality.
+                  </p>
+                  <div className="project-tags">
+                    <span className="project-tag">React</span>
+                    <span className="project-tag">Node.js</span>
+                    <span className="project-tag">Express.js</span>
+                    <span className="project-tag">IoT</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="project-card">
+                <div className="project-image dashboard-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">📊</span>
+                  </div>
+                </div>
                 <div className="project-content">
                   <h3 className="project-title">Comprehensive Data Analytics Dashboard</h3>
                   <p className="project-description">
@@ -434,19 +497,15 @@ function App() {
                     <span className="project-tag">Node.js</span>
                     <span className="project-tag">MongoDB</span>
                   </div>
-                  <div className="project-links">
-                    <a href="#" className="btn btn-sm btn-outline">
-                      <i className="icon-github"></i> Code
-                    </a>
-                    <a href="#" className="btn btn-sm btn-primary">
-                      <i className="icon-external-link"></i> Demo
-                    </a>
-                  </div>
                 </div>
               </div>
 
               <div className="project-card">
-                <div className="project-image website-project">{/* Placeholder for project image */}</div>
+                <div className="project-image website-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🏛️</span>
+                  </div>
+                </div>
                 <div className="project-content">
                   <h3 className="project-title">Theta Tau Website Revamp</h3>
                   <p className="project-description">
@@ -460,19 +519,15 @@ function App() {
                     <span className="project-tag">JavaScript</span>
                     <span className="project-tag">React</span>
                   </div>
-                  <div className="project-links">
-                    <a href="#" className="btn btn-sm btn-outline">
-                      <i className="icon-github"></i> Code
-                    </a>
-                    <a href="#" className="btn btn-sm btn-primary">
-                      <i className="icon-external-link"></i> Demo
-                    </a>
-                  </div>
                 </div>
               </div>
 
-              <div className="project-card featured-project">
-                <div className="project-image game-project">{/* Placeholder for project image */}</div>
+              <div className="project-card">
+                <div className="project-image game-project">
+                  <div className="project-logo-container">
+                    <span className="project-icon">🎮</span>
+                  </div>
+                </div>
                 <div className="project-content">
                   <h3 className="project-title">Game Development in Unity</h3>
                   <p className="project-description">
@@ -485,14 +540,6 @@ function App() {
                     <span className="project-tag">C#</span>
                     <span className="project-tag">Game Development</span>
                     <span className="project-tag">UI Design</span>
-                  </div>
-                  <div className="project-links">
-                    <a href="#" className="btn btn-sm btn-outline">
-                      <i className="icon-github"></i> Code
-                    </a>
-                    <a href="#" className="btn btn-sm btn-primary">
-                      <i className="icon-external-link"></i> Demo
-                    </a>
                   </div>
                 </div>
               </div>
@@ -514,7 +561,7 @@ function App() {
             <div className="contact-cards">
               <div className="contact-card">
                 <div className="contact-icon">
-                  <i className="icon-mail"></i>
+                  <img src="./email.png" alt="Email" />
                 </div>
                 <h3 className="contact-title">Email</h3>
                 <p className="contact-info">ina.chloe@gmail.com</p>
@@ -525,7 +572,7 @@ function App() {
 
               <div className="contact-card">
                 <div className="contact-icon">
-                  <i className="icon-linkedin"></i>
+                  <img src="./linkedin.png" alt="LinkedIn" />
                 </div>
                 <h3 className="contact-title">LinkedIn</h3>
                 <p className="contact-info">Connect with me on LinkedIn</p>
@@ -535,13 +582,13 @@ function App() {
                   rel="noreferrer"
                   className="btn btn-outline"
                 >
-                  View Profile
+                  Visit Profile
                 </a>
               </div>
 
               <div className="contact-card">
                 <div className="contact-icon">
-                  <i className="icon-github"></i>
+                  <img src="./github.png" alt="GitHub" />
                 </div>
                 <h3 className="contact-title">GitHub</h3>
                 <p className="contact-info">Check out my code repositories</p>
@@ -552,8 +599,8 @@ function App() {
             </div>
 
             <div className="resume-download">
-              <a href="#" download className="btn btn-primary btn-lg">
-                <i className="icon-download"></i> Download Resume
+              <a href="/resume.pdf" download className="btn btn-primary btn-lg">
+                ↓ Download Resume
               </a>
             </div>
           </div>
@@ -568,7 +615,7 @@ function App() {
           </div>
           <div className="footer-social">
             <a href="https://github.com" target="_blank" rel="noreferrer" className="social-link">
-              <i className="icon-github"></i>
+              <img src="/github.png" alt="GitHub" />
             </a>
             <a
               href="https://www.linkedin.com/in/hana-chloe-yoon"
@@ -576,10 +623,10 @@ function App() {
               rel="noreferrer"
               className="social-link"
             >
-              <i className="icon-linkedin"></i>
+              <img src="/linkedin.png" alt="LinkedIn" />
             </a>
             <a href="mailto:ina.chloe@gmail.com" className="social-link">
-              <i className="icon-mail"></i>
+              <img src="/email.png" alt="Email" />
             </a>
           </div>
         </div>
