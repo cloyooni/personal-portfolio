@@ -1,0 +1,101 @@
+/* MOBILE ONLY: hide desktop nav*/
+@media (max-width: 767px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: block !important; }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 3.5rem; left: 0; right: 0;
+    background: var(--background-light);
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+  }
+  .nav.open {
+    display: flex;
+    max-height: 400px; /* big enough for 4 links */
+  }
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .nav a {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* bottom tab bar */
+  .mobile-tabbar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--background-light);
+    display: flex !important;
+    flex-direction: row !important;
+    border-top: 1px solid var(--border);
+    z-index: 50;
+    width: 100vw !important;
+  }
+  .mobile-tabbar > button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.75rem 0 !important;
+    font-size: 0.75rem !important;
+    color: var(--text-muted) !important;
+    border: none !important;
+    background: none !important;
+    gap: 0.25rem !important;
+  }
+  .mobile-tabbar button.active {
+    color: var(--primary);
+    font-weight: bold;
+    background: rgba(225, 29, 72, 0.08); /* subtle highlight */
+    border-bottom: 2.5px solid var(--primary);
+  }
+  .mobile-tabbar button.active svg {
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  /* mobile-only sections: hide all except the one with .shown */
+  .mobile-section { display: none; padding-bottom: 0; /* removed extra space for tabbar */ }
+  .mobile-section.shown { display: block; }
+
+  /* stack everything single-column */
+  .container { padding: 0 0.75rem; }
+  .hero-content { gap: 1.5rem; }
+  .profile-image { width: 200px; height: 200px; }
+  .hero-title { font-size: 2.25rem; }
+  .section { padding: 2rem 0; }
+  .about-content, .projects-grid, .contact-cards { display: block; }
+  .project-card, .contact-card, .card { margin-bottom: 1.5rem; }
+  .skills-list { overflow-x: auto; white-space: nowrap; }
+  .skill-badge { display: inline-block; }
+
+  .mobile-footer {
+    background: var(--background-light);
+    text-align: center;
+    padding-bottom: 1.5rem;
+    box-shadow: none;
+  }
+  .main {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .desktop-only { display: block !important; }
+  .mobile-only { display: none !important; }
+}
+
+.header-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+} 
