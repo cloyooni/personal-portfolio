@@ -5,6 +5,7 @@ import "./App.css"
 import "./mobile.css"
 import { initScrollAnimations } from "./animations"
 import { MobileNav } from "./components/MobileNav"
+import { Home, User, Clipboard, Mail } from "lucide-react"
 
 function App() {
   const [activeTab, setActiveTab] = useState("technical")
@@ -24,14 +25,6 @@ function App() {
             <a href="/" className="logo-link">
               <span className="logo-text">HCY</span>
             </a>
-          </div>
-          <div className="mobile-only">
-            <MobileNav 
-              showMobileMenu={showMobileMenu}
-              setShowMobileMenu={setShowMobileMenu}
-              mobileSection={mobileSection}
-              setMobileSection={setMobileSection}
-            />
           </div>
           <nav className="nav desktop-only">
             <a href="#about" className="nav-link">
@@ -629,7 +622,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer mobile-footer">
         <div className="container footer-container">
           <div className="footer-copyright">
             <p>© {new Date().getFullYear()} Hana Chloe Yoon. All rights reserved.</p>
@@ -652,6 +645,22 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* mobile bottom tabs as true footer */}
+      <div className="mobile-tabbar mobile-only">
+        <button onClick={()=>setMobileSection("about")} className={mobileSection==="about"?"active":""}>
+          <User size={20}/> About
+        </button>
+        <button onClick={()=>setMobileSection("experience")} className={mobileSection==="experience"?"active":""}>
+          <Clipboard size={20}/> Experience
+        </button>
+        <button onClick={()=>setMobileSection("projects")} className={mobileSection==="projects"?"active":""}>
+          <Home size={20}/> Projects
+        </button>
+        <button onClick={()=>setMobileSection("contact")} className={mobileSection==="contact"?"active":""}>
+          <Mail size={20}/> Contact
+        </button>
+      </div>
     </div>
   )
 }
