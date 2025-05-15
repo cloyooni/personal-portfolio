@@ -53,10 +53,17 @@
   }
   .mobile-tabbar button.active {
     color: var(--primary);
+    font-weight: bold;
+    background: rgba(225, 29, 72, 0.08); /* subtle highlight */
+    border-bottom: 2.5px solid var(--primary);
+  }
+  .mobile-tabbar button.active svg {
+    color: var(--primary);
+    font-weight: bold;
   }
 
   /* mobile-only sections: hide all except the one with .shown */
-  .mobile-section { display: none; padding-bottom: 3.5rem; /* leave space for tabbar */ }
+  .mobile-section { display: none; padding-bottom: 0; /* removed extra space for tabbar */ }
   .mobile-section.shown { display: block; }
 
   /* stack everything single-column */
@@ -77,7 +84,7 @@
     box-shadow: none;
   }
   .main {
-    padding-bottom: 6.5rem;
+    padding-bottom: 0;
   }
 }
 
